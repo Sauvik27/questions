@@ -23,6 +23,11 @@ int main()
        	cout<<j+1<<" is an equilibrium index";
        	break;
        }
+       if(j==sum-j-1)
+       {
+       	cout<<"-1";
+       	break;
+       }
     }
     return 0;
 }
