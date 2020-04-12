@@ -50,10 +50,25 @@ bool search(bstnode *root,int data)
 		return search(root->left,data);
 	}
 }
+int minimum(bstnode *root)
+{
+	int min=0;
+	struct bstnode *temp;
+	temp=root;
+	while(temp->left!=NULL)
+	{
+		temp=temp->left;
+	}
+    min=temp->data;
+    return min;
+}
 int main()
 {
+    //implementation......................
 	struct bstnode *root=NULL;
-	int num;
+	int num=0;
+	int max=0;
+	int min=0;
 	root=insert(root,15);
 	root=insert(root,20);
 	root=insert(root,10);
@@ -61,12 +76,19 @@ int main()
 	root=insert(root,12);
 	root=insert(root,17);
 	root=insert(root,25);
-	//searching
+    //searching............................
 	printf("enter the number\n");
 	scanf("%d",&num);
     if(search(root,num)==true)
     	printf("found\n");
     else
     	printf("not found\n");
+    //Maximum and minimum..................
+    max=root->data;
+    printf("Maximum is\n");
+    printf("%d\n",max);
+    min=minimum(root);
+    printf("Minimum is\n");
+    printf("%d\n",min);
     return 0;
 }
