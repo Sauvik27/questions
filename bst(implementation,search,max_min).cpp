@@ -7,6 +7,13 @@ typedef struct bstnode
 	bstnode *left;
 	bstnode *right;
 }bstnode;
+int max(int a,int b)
+{
+	if(a>b)
+		return a;
+	else
+		return b;
+}
 struct bstnode* GetNewNode(int data)
 {
 	struct bstnode *newNode=(struct bstnode*)malloc(sizeof(bstnode));
@@ -62,9 +69,16 @@ int minimum(bstnode *root)
     min=temp->data;
     return min;
 }
+int Height(bstnode *root)
+{
+	if(root==NULL)
+		return -1;
+	return max(Height(root->left),Height(root->right))+1;
+}
 int main()
 {
-    //implementation......................
+	int height=0;
+	//implementation..................
 	struct bstnode *root=NULL;
 	int num=0;
 	int max=0;
@@ -76,19 +90,23 @@ int main()
 	root=insert(root,12);
 	root=insert(root,17);
 	root=insert(root,25);
-    //searching............................
+	//searching........................
 	printf("enter the number\n");
 	scanf("%d",&num);
     if(search(root,num)==true)
     	printf("found\n");
     else
     	printf("not found\n");
-    //Maximum and minimum..................
+         //Maximum and minimum..............
     max=root->data;
     printf("Maximum is\n");
     printf("%d\n",max);
     min=minimum(root);
     printf("Minimum is\n");
     printf("%d\n",min);
+        //Height of BST.....................
+    height=Height(root);
+    printf("Height is\n");
+    printf("%d\n",height);
     return 0;
 }
